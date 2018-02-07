@@ -2,14 +2,14 @@ const skeletor = () => {
 
 	const configManager = require('./lib/configManager')();
 	const taskRunner = require('./lib/taskRunner')();
-	
+
 	const setConfig = config => {
 		configManager.setConfig(config);
-	}
+	};
 
 	const getConfig = () => {
 		return configManager.getConfig();
-	}
+	};
 
 	const runTask = (taskName, options) => {
 
@@ -27,18 +27,16 @@ const skeletor = () => {
 			const errorMsg = `ERROR: Could not find task "${taskName}"`;
 			console.error(errorMsg);
 			return Promise.reject(errorMsg);
-		} 
-
+		}
 
 		return taskRunner.runTask(taskConfig, options);
-		
-	}
+	};
 
 	return {
 		getConfig,
 		setConfig,
 		runTask
-	}
-}
+	};
+};
 
 module.exports = skeletor;
