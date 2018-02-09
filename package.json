@@ -1,0 +1,24 @@
+{
+  "name": "skeletor-core",
+  "version": "0.1.0",
+  "description": "The core engine for the Skeletor family of build tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint index.js ./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deg-skeletor/skeletor-core.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deg-skeletor/skeletor-core/issues"
+  },
+  "homepage": "https://github.com/deg-skeletor/skeletor-core#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "jest": "^22.1.4"
+  }
+}
