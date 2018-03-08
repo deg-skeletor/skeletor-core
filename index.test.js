@@ -32,6 +32,8 @@ const validResponse = {
     ]
 };
 
+jest.mock('./lib/consoleLogger');
+
 test('getConfig() returns null if no config has been set', () => {
 	const skel = skeletor();
 	expect(skel.getConfig()).toEqual(null);
@@ -44,9 +46,21 @@ test('getConfig() returns previously set config', () => {
 	expect(skel.getConfig()).toEqual(config);
 });
 
+test('A custom logger is used by runTask()', () => {
+	const skel = skeletor();
+	const logger = {
+		error: jest.fn()
+	};
+	skel.setLogger(logger);
+
+	expect.assertions(1);
+	skel.runTask('build')
+		.catch(e => expect(logger.error.mock.calls.length).toBe(2));
+});
+
 test('runTask() returns an error if no config is specified', () => {
 	expect.assertions(1);
-  	skeletor().runTask('build')
+  	return skeletor().runTask('build')
   		.catch(e => expect(e).toMatch('ERROR: No configuration specified'));
 });
 
@@ -54,7 +68,7 @@ test('runTask() returns an error if task does not exist in config', () => {
 	expect.assertions(1);
 	const skel = skeletor();
 	skel.setConfig({tasks: [{name: 'task1'}]});
-	skeletor().runTask('task2')
+	return skel.runTask('task2')
 		.catch(e => expect(e).toMatch('ERROR: Could not find task "task2"'));
 });
 
