@@ -22,6 +22,25 @@ const validConfig = {
 	]
 };
 
+const skeletorPluginConfig = {
+	name: 'skeletorPlugin',
+	config: { test: 1 }
+};
+
+const validPluginConfig = {
+	tasks: [
+		{
+			name: 'task1',
+			subTasks: [
+				{
+					name: 'subTask1',
+					plugins: [skeletorPluginConfig]
+				}
+			]
+		}
+	]
+};
+
 const validResponse = {
 	taskName: 'task1',
     status: 'complete',
@@ -33,6 +52,8 @@ const validResponse = {
 };
 
 jest.mock('./lib/consoleLogger');
+jest.mock('skeletorPlugin');
+jest.mock('path');
 
 test('getConfig() returns null if no config has been set', () => {
 	const skel = skeletor();
@@ -55,7 +76,7 @@ test('A custom logger is used by runTask()', () => {
 
 	expect.assertions(1);
 	skel.runTask('build')
-		.catch(e => expect(logger.error.mock.calls.length).toBe(2));
+		.catch(e => expect(logger.error.mock.calls.length).toBe(1));
 });
 
 test('runTask() returns an error if no config is specified', () => {
@@ -94,4 +115,20 @@ test('runTask() runs only specified subtasks', () => {
 	skel.setConfig(validConfig);
 	return skel.runTask('task1', options)
 		.then(response => expect(response).toEqual(expectedResponse));
+});
+
+test('runTask() runs plugin', () => {
+	const skeletorPlugin = require('skeletorPlugin')();
+	const runSpy = jest.spyOn(skeletorPlugin, 'run');
+
+	const skel = skeletor();
+	skel.setConfig(validPluginConfig);
+
+	expect.assertions(3);
+	return skel.runTask('task1')
+		.then(response => {
+			expect(runSpy.mock.calls.length).toEqual(1);
+			expect(runSpy.mock.calls[0].length).toEqual(2);
+			expect(runSpy.mock.calls[0][0]).toEqual(skeletorPluginConfig.config);			
+		});
 });
