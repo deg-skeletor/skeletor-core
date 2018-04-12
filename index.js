@@ -36,15 +36,17 @@ const skeletor = () => {
 			options.logger = logger;
 		}
 
-		return taskRunner.runTask(taskConfig, options);
+		return taskRunner.runTask(taskConfig, options, api);
 	};
 
-	return {
+	const api = {
 		getConfig,
 		setConfig,
 		setLogger,
 		runTask
 	};
+
+	return api;
 };
 
 module.exports = skeletor;

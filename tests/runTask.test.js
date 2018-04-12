@@ -1,4 +1,4 @@
-const skeletor = require('./index');
+const skeletor = require('../index');
 
 const validConfig = {
 	tasks: [
@@ -27,7 +27,7 @@ const skeletorPluginConfig = {
 	config: { test: 1 }
 };
 
-const validPluginConfig = {
+const validConfigWithPlugin = {
 	tasks: [
 		{
 			name: 'task1',
@@ -51,20 +51,12 @@ const validResponse = {
     ]
 };
 
-jest.mock('./lib/consoleLogger');
+jest.mock('../lib/consoleLogger');
 jest.mock('skeletorPlugin');
 jest.mock('path');
 
-test('getConfig() returns null if no config has been set', () => {
-	const skel = skeletor();
-	expect(skel.getConfig()).toEqual(null);
-});
-
-test('getConfig() returns previously set config', () => {
-	const skel = skeletor();
-	const config = {tasks: [{name: 'task1'}]};
-	skel.setConfig(config);
-	expect(skel.getConfig()).toEqual(config);
+beforeEach(() => {
+  jest.restoreAllMocks();
 });
 
 test('A custom logger is used by runTask()', () => {
@@ -86,9 +78,10 @@ test('runTask() returns an error if no config is specified', () => {
 });
 
 test('runTask() returns an error if task does not exist in config', () => {
-	expect.assertions(1);
 	const skel = skeletor();
 	skel.setConfig({tasks: [{name: 'task1'}]});
+
+	expect.assertions(1);
 	return skel.runTask('task2')
 		.catch(e => expect(e).toMatch('ERROR: Could not find task "task2"'));
 });
@@ -96,6 +89,8 @@ test('runTask() returns an error if task does not exist in config', () => {
 test('runTask() runs specified task', () => {
 	const skel = skeletor();
 	skel.setConfig(validConfig);
+
+	expect.assertions(1);
 	return skel.runTask('task1')
 		.then(response => expect(response).toEqual(validResponse));
 });
@@ -113,6 +108,8 @@ test('runTask() runs only specified subtasks', () => {
 	};
 
 	skel.setConfig(validConfig);
+
+	expect.assertions(1);
 	return skel.runTask('task1', options)
 		.then(response => expect(response).toEqual(expectedResponse));
 });
@@ -122,13 +119,18 @@ test('runTask() runs plugin', () => {
 	const runSpy = jest.spyOn(skeletorPlugin, 'run');
 
 	const skel = skeletor();
-	skel.setConfig(validPluginConfig);
+	skel.setConfig(validConfigWithPlugin);
 
-	expect.assertions(3);
-	return skel.runTask('task1')
+	const pluginOptions = {
+		logger: {
+			info: jest.fn()
+		}
+	};
+
+	expect.assertions(2);
+	return skel.runTask('task1', pluginOptions)
 		.then(response => {
 			expect(runSpy.mock.calls.length).toEqual(1);
-			expect(runSpy.mock.calls[0].length).toEqual(2);
-			expect(runSpy.mock.calls[0][0]).toEqual(skeletorPluginConfig.config);			
+			expect(runSpy.mock.calls[0]).toEqual([skeletorPluginConfig.config, pluginOptions, skel]);		
 		});
 });
