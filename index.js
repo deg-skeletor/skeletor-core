@@ -1,7 +1,7 @@
 const skeletor = () => {
 
 	const configManager = require('./lib/configManager')();
-	const taskRunner = require('./lib/taskRunner')();
+	const taskRunner = require('./lib/taskRunner');
 	let logger = require('./lib/consoleLogger')();
 
 	const setLogger = newLogger => {
