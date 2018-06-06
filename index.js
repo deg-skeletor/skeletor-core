@@ -18,8 +18,8 @@ const skeletor = () => {
 
 		const config = configManager.getConfig();
 
-		if(config === null) {
-			const errorMsg = 'ERROR: No configuration specified';
+		if(config.errorMessage) {
+			const errorMsg = `Configuration Error -- ${config.errorMessage}`;
 			logger.error(errorMsg);
 			return Promise.reject(errorMsg);
 		}
