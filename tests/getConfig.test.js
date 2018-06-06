@@ -1,8 +1,8 @@
 const skeletor = require('../index');
 
-test('getConfig() returns null if no config has been set', () => {
+test('getConfig() returns obj with error msg if no config has been set', () => {
 	const skel = skeletor();
-	expect(skel.getConfig()).toEqual(null);
+	expect(skel.getConfig()).toHaveProperty('errorMessage');
 });
 
 test('getConfig() returns previously set config', () => {

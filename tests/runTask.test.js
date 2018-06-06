@@ -74,7 +74,7 @@ test('A custom logger is used by runTask()', () => {
 test('runTask() returns an error if no config is specified', () => {
 	expect.assertions(1);
   	return skeletor().runTask('build')
-  		.catch(e => expect(e).toMatch('ERROR: No configuration specified'));
+  		.catch(e => expect(e).toMatch("Configuration Error -- Error: ENOENT: no such file or directory, access './skeletor.config.js'"));
 });
 
 test('runTask() returns an error if task does not exist in config', () => {
