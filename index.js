@@ -16,10 +16,10 @@ const skeletor = () => {
 
 	const runTask = (taskName, options = {}) => {
 
-		const config = configManager.getConfig();
-
-		if(config === null) {
-			const errorMsg = 'ERROR: No configuration specified';
+		try {
+			configManager.getConfig();
+		} catch (e) {
+			const errorMsg = `Configuration Error -- ${e}`;
 			logger.error(errorMsg);
 			return Promise.reject(errorMsg);
 		}
