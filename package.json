@@ -1,5 +1,5 @@
 {
-  "name": "@skeletor/core",
+  "name": "@deg-skeletor/core",
   "version": "0.1.0",
   "description": "The core engine for the Skeletor family of build tools",
   "main": "index.js",
