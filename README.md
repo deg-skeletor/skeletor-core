@@ -1,4 +1,5 @@
 # skeletor-core
+[![Build Status](https://travis-ci.org/deg-skeletor/skeletor-core.svg?branch=master)](https://travis-ci.org/deg-skeletor/skeletor-core)
 
 ## Goals/Guidelines
 - Node-based
