@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  email: scheul93@gmail.com
+  api_key:
+    secure: GZKuBoGA87f1tbM6bbNFnRRY3kZqKriSqv4jYW2w2OEZf+TdFX2SGNY4oKUY/569x1OV87W1dyWf0Y8WPQKtSkAV2Q8LwbGekIeh/Cnr6aZyvHX6pQGJdxP8mnskAF1nQrnjj1pR/nvw477d0GHAtgBpEqN8HdVKlKkALNdBX6YACL12bq+1Jc9J1Gp8RL9hOy2T6gfbLEK+ztGrc2sAy4ySd8MEQNXitPg26cj6xmSeB2RqvL22f9A1Dh3D2OVAzv3nxUMxh8UfbJWr5WN3K7MU/fKBlFJE9wwKbQoQqXhZPs2g4XYdSJFJOJR42x/9utrlY0DjQBSjJ9DRY3Lzk3bkd+elW7ltjFUdnEzcTZlrq9yIeeWeMBbNFKMNFoqawnIHa3FGOmsBx8vfqyVlK6xJRnVoCNDknt+EsMjhB7D7X41UQF0K0R8TJOX+ehwVoDBO9M9sgtfIJJJu4SF5NTV7Bz1WgVdk9rxwGf/eoGFODAHy2t3GhOA0Bv3ZtnDgt6qlb9gJU48Wi49TMCxiCc4iYSZSxzw5SeXsxeU+8by0VNmTPYEtF4PhSsLjVpGinALiCQQAuEHzDuNCfZpImxPONivzSPEhwsjArX262ezm/1/tmd5svqyyCa/jUiaPd4krxcd/dc/j+ZobVfVuKX79Z76mhfQJUxCj3MFcxWY=
+  on:
+    branch: master
+    tags: true
+    repo: deg-skeletor/skeletor-core

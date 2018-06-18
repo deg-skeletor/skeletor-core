@@ -1,5 +1,5 @@
 {
-  "name": "skeletor-core",
+  "name": "@skeletor/core",
   "version": "0.1.0",
   "description": "The core engine for the Skeletor family of build tools",
   "main": "index.js",
@@ -20,5 +20,11 @@
   "devDependencies": {
     "eslint": "^4.17.0",
     "jest": "^22.1.4"
-  }
+  },
+  "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "skeletor"
+    ]
 }
