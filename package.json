@@ -1,6 +1,6 @@
 {
   "name": "@deg-skeletor/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The core engine for the Skeletor family of build tools",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,9 @@
     "jest": "^22.1.4"
   },
   "publishConfig": {
-        "access": "public"
-    },
-    "keywords": [
-        "skeletor"
-    ]
+    "access": "public"
+  },
+  "keywords": [
+    "skeletor"
+  ]
 }
