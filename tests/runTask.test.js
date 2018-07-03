@@ -126,11 +126,35 @@ test('runTask() runs plugin', () => {
 			info: jest.fn()
 		}
 	};
-
+	
 	expect.assertions(2);
 	return skel.runTask('task1', pluginOptions)
 		.then(response => {
 			expect(runSpy.mock.calls.length).toEqual(1);
 			expect(runSpy.mock.calls[0]).toEqual([skeletorPluginConfig.config, pluginOptions, skel]);		
 		});
+});
+
+describe('runTask() sets the node environment variable', () => {
+	const originalNodeEnv = process.env.NODE_ENV;
+
+	afterEach(() => {
+		process.env.NODE_ENV = originalNodeEnv;
+	});
+
+	test('when the task config specifies production', () => {
+		const environment = 'production';
+
+		const prodConfig = {...validConfigWithPlugin};
+		prodConfig.tasks[0].environment = environment;
+
+		const skel = skeletor();
+		skel.setConfig(validConfigWithPlugin);
+		
+		expect.assertions(1);
+		return skel.runTask('task1')
+			.then(() => {
+				expect(process.env.NODE_ENV).toEqual(environment);
+			});
+	})
 });
