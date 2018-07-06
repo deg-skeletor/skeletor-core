@@ -1,7 +1,7 @@
 # Skeletor!
 [![Build Status](https://travis-ci.org/deg-skeletor/skeletor-core.svg?branch=master)](https://travis-ci.org/deg-skeletor/skeletor-core)
 
-Skeletor is a simple task runner for automating common development chores. It has a growing [ecosystem of plugins](#ecosystem) to handle a wide variety of tasks. 
+Skeletor is a simple task runner for automating common development chores. It has a growing [ecosystem of plugins](#plugin-ecosystem) to handle a wide variety of tasks. 
 
 Skeletor is built and looked after by the front-end web development team at [DEG](https://www.degdigital.com/).
 
