@@ -1,6 +1,6 @@
 {
   "name": "@deg-skeletor/core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The core engine for the Skeletor family of build tools",
   "main": "index.js",
   "scripts": {
@@ -19,12 +19,16 @@
   "homepage": "https://github.com/deg-skeletor/skeletor-core#readme",
   "devDependencies": {
     "eslint": "^4.17.0",
-    "jest": "^22.1.4"
+    "jest": "^22.1.4",
+    "jest-mock-now": "^1.2.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
     "skeletor"
-  ]
+  ],
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
 }
