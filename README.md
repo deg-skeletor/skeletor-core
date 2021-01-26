@@ -1,5 +1,5 @@
 # Skeletor!
-[![Build Status](https://travis-ci.org/deg-skeletor/skeletor-core.svg?branch=master)](https://travis-ci.org/deg-skeletor/skeletor-core)
+![Run Tests](https://github.com/deg-skeletor/skeletor-core/workflows/Run%20Tests/badge.svg)
 
 Skeletor is a simple task runner for automating common development chores. It has a growing [ecosystem of plugins](#plugin-ecosystem) to handle a wide variety of tasks. 
 
@@ -15,7 +15,7 @@ Nice job! Next, you'll want to install some [plugins](#plugin-ecosystem).
 ## Plugin Ecosystem
 At its core, Skeletor is just a delegator. Plugins do the real work. 
 
-A typical Skeeltor plugin does one thing and one thing well. That one thing could be anything. There are plugins for file copying, PostCSS, Pattern Lab, Express, Rollup, and more. [Go on, have a look](https://github.com/deg-skeletor).
+A typical Skeletor plugin does one thing and one thing well. That one thing could be anything. There are plugins for file copying, PostCSS, Pattern Lab, Express, Rollup, and more. [Go on, have a look](https://github.com/deg-skeletor).
 
 ## Configuration
 Skeletor needs a configuration object to tell it what tasks to run and what those tasks are comprised of. A sample configuration object might look like the following:
